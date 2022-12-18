@@ -1,0 +1,11 @@
+.company-card {
+	min-width: 33vw;
+	max-width: 33vw;
+}
+
+.company-card-group {
+	width: 100vw;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
