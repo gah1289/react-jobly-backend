@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useState } from 'react';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
 
@@ -37,6 +38,11 @@ class JoblyApi {
 	}
 
 	// Individual API routes
+
+	static async getCompanies(data) {
+		let res = await this.request(`companies`, { ...data });
+		return res.companies;
+	}
 
 	/** Get details on a company by handle. */
 

@@ -3,6 +3,8 @@ import JoblyApi from '../backend/helpers/api';
 import './Companies.css';
 import { CardGroup, Card, CardBody, CardTitle, CardSubtitle, CardText, Button, CardImg } from 'reactstrap';
 
+import CompanySearchForm from './CompanySearchForm';
+
 import logo1 from './logos/logo1.png';
 import logo2 from './logos/logo2.png';
 import logo3 from './logos/logo3.png';
@@ -24,19 +26,6 @@ function CompaniesList() {
 		applied,
 		setApplied
 	] = useState(false);
-
-	const [
-		searchName,
-		setSearchName
-	] = useState();
-	const [
-		minEmployees,
-		setMinEmployees
-	] = useState();
-	const [
-		maxEmployees,
-		setMaxEmployees
-	] = useState();
 
 	const getLogo = (logoUrl) => {
 		let logo;
@@ -60,10 +49,15 @@ function CompaniesList() {
 		return logo;
 	};
 
+	const filterCompanies = (co) => {
+		setCompanies(co);
+	};
+
 	useEffect(() => {
-		async function getCompanies() {
-			let companiesFromApi = await JoblyApi.request('companies', {});
-			setCompanies(companiesFromApi.companies);
+		async function getCompanies(data) {
+			let companiesFromApi = await JoblyApi.getCompanies();
+			filterCompanies(companiesFromApi);
+
 			setIsLoading(false);
 		}
 		getCompanies();
@@ -76,24 +70,18 @@ function CompaniesList() {
 	return (
 		<div>
 			<h1>Companies</h1>
-			<form>
-				<h2>Search by:</h2>
-				<div>
-					<label forHtml="name">Name: </label>
-					<input id="name" type="text" placeholder="Company Name" />
-				</div>{' '}
-				<div>
-					<label>Number of Employees: </label>
-					<input id="minEmployees" type="text" placeholder="Minimum" />
-					to
-					<input id="maxEmployees" type="text" placeholder="Maximum" />
-				</div>{' '}
-			</form>
-			<button>Search</button>
+			<CompanySearchForm filterCompanies={filterCompanies} />
+
 			<CardGroup>
 				{companies.map((company) => (
 					<Card key={company.handle} style={{ minWidth: '30vw' }} className="company-card">
-						<CardImg alt={company.name} src={getLogo(company.logoUrl)} top width="100%" />
+						<CardImg
+							style={{ height: '150px', width: '200px', margin: 'auto' }}
+							alt={company.name}
+							src={getLogo(company.logoUrl)}
+							top
+							width="100%"
+						/>
 						<CardBody>
 							<CardTitle tag="h5">{company.name}</CardTitle>
 							<CardSubtitle className="mb-2 text-muted" tag="h6">
