@@ -22,11 +22,6 @@ function CompaniesList() {
 		setIsLoading
 	] = useState(true);
 
-	const [
-		applied,
-		setApplied
-	] = useState(false);
-
 	const getLogo = (logoUrl) => {
 		let logo;
 		let logoNum;

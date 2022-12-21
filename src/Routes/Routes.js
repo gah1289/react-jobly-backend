@@ -18,7 +18,7 @@ function JoblyRoutes() {
 			<Route path="/" element={<Home />} />
 			<Route path="/companies" element={<CompaniesList />} />
 			{/* <Route path="/companies/:id" element={<Company />} /> */}
-			{/* <Route path="/jobs" element={<JobsList />} /> */}
+			<Route path="/jobs" element={<JobsList />} />
 			{/* <Route path="/jobs/:id" element={<Job />} /> */}
 			{/* <Route path="/login" element={<Login />} /> */}
 			{/* <Route path="/signup" element={<Signup />} /> */}

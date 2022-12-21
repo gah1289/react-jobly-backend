@@ -4,10 +4,6 @@ import './Companies.css';
 import { Button } from 'reactstrap';
 
 function CompanySearchForm({ filterCompanies }) {
-	const [
-		companies,
-		setCompanies
-	] = useState([]);
 	const INITIAL_STATE = {
 		name         : undefined,
 		minEmployees : undefined,
@@ -29,8 +25,7 @@ function CompanySearchForm({ filterCompanies }) {
 	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const allCompanies = await JoblyApi.getCompanies();
-
+		// filter out companies by search form data.
 		const filteredCompanies = await JoblyApi.getCompanies({
 			name         : formData.name,
 			minEmployees : formData.minEmployees,
@@ -75,9 +70,7 @@ function CompanySearchForm({ filterCompanies }) {
 					onChange={handleChange}
 				/>
 			</div>{' '}
-			<Button color="secondary" outline>
-				Search
-			</Button>
+			<Button color="secondary">Search</Button>
 			<div className="found-results">{numResultsMsg}</div>
 		</form>
 	);
