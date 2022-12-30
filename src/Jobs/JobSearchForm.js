@@ -21,7 +21,14 @@ function JobSearchForm({ filterJobs }) {
 
 	const handleChange = (e) => {
 		let { name, value } = e.target;
+
+		setFormData((formData) => ({ ...formData, [name]: value }));
+	};
+
+	const checkboxChange = (e) => {
+		let { name, value } = e.target;
 		e.target.checked ? (value = true) : (value = false);
+
 		setFormData((formData) => ({ ...formData, [name]: value }));
 	};
 
@@ -69,13 +76,8 @@ function JobSearchForm({ filterJobs }) {
 					id="hasEquity"
 					type="checkbox"
 					value={formData.hasEquity || ''}
-					onChange={handleChange}
-				>
-					{/* <option value="" />
-					<option onChange={handleChange} value={true}>
-						Has Equity
-					</option> */}
-				</input>
+					onChange={checkboxChange}
+				/>
 			</div>{' '}
 			<Button color="secondary">Search</Button>
 			<div className="found-results">{numResultsMsg}</div>

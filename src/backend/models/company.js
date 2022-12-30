@@ -68,8 +68,6 @@ class Company {
 
 		const { minEmployees, maxEmployees, name } = searchFilters;
 
-		console.log('findall', minEmployees);
-
 		if (minEmployees > maxEmployees) {
 			throw new BadRequestError('Min employees cannot be greater than max');
 		}

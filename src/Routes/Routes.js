@@ -11,18 +11,20 @@ import Login from '../Users/Login';
 import Signup from '../Users/Signup';
 import Profile from '../Users/Profile';
 import NotFound from '../NotFound';
+import Logout from '../Users/Logout';
 
 function JoblyRoutes() {
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
 			<Route path="/companies" element={<CompaniesList />} />
-			{/* <Route path="/companies/:id" element={<Company />} /> */}
+			<Route path="/companies/:id" element={<Company />} />
 			<Route path="/jobs" element={<JobsList />} />
-			{/* <Route path="/jobs/:id" element={<Job />} /> */}
-			{/* <Route path="/login" element={<Login />} /> */}
-			{/* <Route path="/signup" element={<Signup />} /> */}
+
+			<Route path="/login" element={<Login />} />
+			<Route path="/signup" element={<Signup />} />
 			<Route path="/profile" element={<Profile />} />
+			<Route path="/logout" element={<Logout />} />
 			<Route path="*" element={<NotFound />} />
 		</Routes>
 	);

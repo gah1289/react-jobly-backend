@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import JoblyApi from '../backend/helpers/api';
 import './Jobs.css';
-import { Link } from 'react-router-dom';
-import { CardGroup, Card, CardBody, CardTitle, CardSubtitle, CardText, Button, CardImg } from 'reactstrap';
+import { useLocation } from 'react-router-dom';
+import { CardGroup } from 'reactstrap';
 import { v4 as uuid } from 'uuid';
-import axios from 'axios';
+
 import JobCard from './JobCard';
 import JobSearchForm from './JobSearchForm';
 
@@ -19,20 +19,22 @@ function JobsList() {
 		setIsLoading
 	] = useState(true);
 
-	const [
-		applied,
-		setApplied
-	] = useState(false);
-
 	const filterJobs = (j) => {
 		setJobs(j);
 	};
+	const location = useLocation();
 
 	useEffect(() => {
 		async function getJobs(data) {
-			let jobsFromApi = await JoblyApi.getJobs();
-			filterJobs(jobs);
-			setJobs(jobsFromApi);
+			if (location.state) {
+				setJobs(location.state.props);
+			}
+			else {
+				let jobsFromApi = await JoblyApi.getJobs();
+				filterJobs(jobs);
+				setJobs(jobsFromApi);
+			}
+
 			setIsLoading(false);
 		}
 		getJobs();
@@ -45,7 +47,7 @@ function JobsList() {
 	return (
 		<div>
 			<h1>Jobs</h1>
-			<JobSearchForm filterJobs={filterJobs} />
+			{!location.state ? <JobSearchForm filterJobs={filterJobs} /> : ''}
 			<CardGroup>{jobs.map((job) => <JobCard key={uuid()} job={job} />)}</CardGroup>
 		</div>
 	);

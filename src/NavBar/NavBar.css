@@ -8,3 +8,7 @@
 	color: bisque;
 	text-decoration: underline;
 }
+
+.hidden {
+	display: none;
+}
