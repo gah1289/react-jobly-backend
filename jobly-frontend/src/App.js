@@ -1,5 +1,5 @@
 import './App.css';
-import JoblyApi from './backend/helpers/api';
+import JoblyApi from './api';
 import JoblyRoutes from './Routes/Routes';
 import NavBar from './NavBar/NavBar';
 import 'bootstrap/dist/css/bootstrap.css';

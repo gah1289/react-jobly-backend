@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import JoblyApi from '../backend/helpers/api';
+import JoblyApi from '../api';
 import { Button, Form, FormGroup, Label, Input, Col, FormFeedback } from 'reactstrap';
 import ItemContext from '../ItemContext';
 

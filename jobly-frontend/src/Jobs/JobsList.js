@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import JoblyApi from '../backend/helpers/api';
+import JoblyApi from '../api';
 import './Jobs.css';
 import { useLocation } from 'react-router-dom';
 import { CardGroup } from 'reactstrap';

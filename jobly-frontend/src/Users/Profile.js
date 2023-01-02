@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Col, Button, Form, FormGroup, Label, Input, Spinner, FormFeedback, Alert, Link, Card } from 'reactstrap';
 import ItemContext from '../ItemContext';
 import { Navigate } from 'react-router-dom';
-import JoblyApi from '../backend/helpers/api';
+import JoblyApi from '../api';
 import './Profile.css';
 import JobCard from '../Jobs/JobCard';
 

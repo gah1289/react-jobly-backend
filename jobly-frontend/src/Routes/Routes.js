@@ -1,4 +1,4 @@
-import JoblyApi from '../backend/helpers/api';
+import JoblyApi from '../api';
 import axios from 'axios';
 import { Routes, Route } from 'react-router-dom';
 import React, { useContext } from 'react';

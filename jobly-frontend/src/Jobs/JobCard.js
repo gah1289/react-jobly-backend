@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef, useContext } from 'react';
-import JoblyApi from '../backend/helpers/api';
+import React, { useEffect, useState, useContext } from 'react';
+import JoblyApi from '../api';
 import './Jobs.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Card, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
 import { v4 as uuid } from 'uuid';
 import ItemContext from '../ItemContext';
@@ -11,7 +11,7 @@ function JobCard({ job }) {
 		company,
 		setCompany
 	] = useState();
-
+	const navigate = useNavigate();
 	const { user } = useContext(ItemContext);
 
 	useEffect(() => {
@@ -23,14 +23,19 @@ function JobCard({ job }) {
 		}
 		getCompany(job.companyHandle);
 	}, []);
-	const appliedJobs = user.current.applications;
 
 	function checkApplied() {
-		if (appliedJobs.includes(job.id)) {
-			return true;
+		if (user.current.username) {
+			const appliedJobs = user.current.applications;
+			if (appliedJobs.includes(job.id)) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 		else {
-			return false;
+			return null;
 		}
 	}
 
@@ -48,9 +53,14 @@ function JobCard({ job }) {
 	}
 
 	const applyForJob = async (jobId) => {
-		await JoblyApi.apply(user.current.username, jobId);
+		if (user.current.username) {
+			await JoblyApi.apply(user.current.username, jobId);
 
-		setApplied(true);
+			setApplied(true);
+		}
+		else {
+			navigate('/login');
+		}
 	};
 
 	return (

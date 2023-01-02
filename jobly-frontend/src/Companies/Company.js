@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import JoblyApi from '../backend/helpers/api';
+import JoblyApi from '../api';
 import { Card, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
 import CompanyCard from './CompanyCard';
 function Company() {

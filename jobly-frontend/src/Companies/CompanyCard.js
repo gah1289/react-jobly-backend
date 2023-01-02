@@ -1,5 +1,5 @@
 import React from 'react';
-import JoblyApi from '../backend/helpers/api';
+import JoblyApi from '../api';
 import './Companies.css';
 import { Card, CardBody, CardTitle, CardSubtitle, CardText, Button, CardImg } from 'reactstrap';
 

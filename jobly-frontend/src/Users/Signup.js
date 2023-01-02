@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import JoblyApi from '../backend/helpers/api';
+import JoblyApi from '../api';
 import { Button, Form, FormGroup, Label, Input, Col, FormFeedback, Modal, ModalBody } from 'reactstrap';
 
 function Signup() {
