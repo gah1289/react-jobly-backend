@@ -6,7 +6,7 @@ import Home from '../Home/Home';
 import CompaniesList from '../Companies/CompaniesList';
 import Company from '../Companies/Company';
 import JobsList from '../Jobs/JobsList';
-import Job from '../Jobs/Job';
+
 import Login from '../Users/Login';
 import Signup from '../Users/Signup';
 import Profile from '../Users/Profile';

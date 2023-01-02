@@ -1,4 +1,5 @@
 import JobsList from './JobsList';
+import JobSearchForm from './JobSearchForm';
 import { render, screen } from '@testing-library/react';
 import ItemContext from '../ItemContext';
 import { MemoryRouter } from 'react-router-dom';
@@ -51,7 +52,10 @@ describe('Loads Job Card', function() {
 		<MemoryRouter>
 			<ItemContext.Provider value={{ jobs, isLoading, isLoggedIn, user }}>
 				{' '}
-				<JobsList />{' '}
+				<JobsList>
+					<JobSearchForm />
+				</JobsList>{' '}
+				/>{' '}
 			</ItemContext.Provider>
 		</MemoryRouter>
 	);

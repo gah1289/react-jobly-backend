@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import Profile from './Profile';
-import { MemoryRouter } from 'react-router-dom';
+import { render } from '@testing-library/react';
+import Routes from './Routes';
+import { MemoryRouter } from 'react-router';
 import ItemContext from '../ItemContext';
 
-describe('Renders Profile', function() {
+describe('Renders Routes', function() {
 	let isLoggedIn = true;
 
 	let isLoading = false;
@@ -20,30 +20,24 @@ describe('Renders Profile', function() {
 	};
 
 	user.current = user;
+	it('renders without crashing', function() {
+		render(
+			<MemoryRouter>
+				<ItemContext.Provider value={{ isLoading, isLoggedIn, user }}>
+					<Routes />
+				</ItemContext.Provider>
+			</MemoryRouter>
+		);
+	});
+
 	it('matches snapshot', function() {
 		const { asFragment } = render(
 			<MemoryRouter>
 				<ItemContext.Provider value={{ isLoading, isLoggedIn, user }}>
-					<Profile />
+					<Routes />
 				</ItemContext.Provider>
 			</MemoryRouter>
 		);
 		expect(asFragment()).toMatchSnapshot();
-	});
-
-	it('shows Profile Change Form', function() {
-		render(
-			<MemoryRouter>
-				<ItemContext.Provider value={{ isLoading, isLoggedIn, user }}>
-					<Profile />
-				</ItemContext.Provider>
-			</MemoryRouter>
-		);
-
-		const firstNameInput = screen.queryByText(/First Name/i);
-		expect(firstNameInput).toBeInTheDocument();
-		expect(firstNameInput.tagName).toBe('LABEL');
-		const submitBtn = screen.queryByText(/Submit/i);
-		expect(submitBtn).toBeInTheDocument();
 	});
 });
