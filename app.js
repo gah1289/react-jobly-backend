@@ -29,6 +29,7 @@ app.use('/jobs', jobsRoutes);
 
 /** Handle 404 errors -- this matches everything */
 app.use(function(req, res, next) {
+	console.log('ERROR');
 	return next(new NotFoundError());
 });
 
