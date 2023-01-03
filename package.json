@@ -31,5 +31,10 @@
 	},
 	"devDependencies": {
 		"supertest": "^5.0.0-0"
-	}
+	},
+	"permissions": [
+		"https://ghm-jobly.surge.sh/",
+		"https://ghm-jobly.surge.sh/*",
+		"http://ghm-jobly.surge.sh/*"
+	]
 }
